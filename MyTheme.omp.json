@@ -1,0 +1,128 @@
+{
+    "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+    "blocks": [
+        {
+            "type": "prompt",
+            "alignment": "left",
+            "segments": []
+        },
+        {
+            "alignment": "left",
+            "newline": true,
+            "segments": [
+                {
+                    "foreground": "#74aa04",
+                    "properties": {
+                        "folder_icon": "\uf115",
+                        "home_icon": "\uf7db",
+                        "style": "agnoster"
+                    },
+                    "style": "powerline",
+                    "template": "{{ .Path }} ",
+                    "type": "path"
+                },
+                {
+                    "type": "git",
+                    "style": "powerline",
+                    "foreground": "#cacaca",
+                    "foreground_templates": [
+                        "{{ if or (.Working.Changed) (.Staging.Changed) }}#fa3{{ end }}",
+                        "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#da5{{ end }}",
+                        "{{ if gt .Ahead 0 }}#89569c{{ end }}",
+                        "{{ if gt .Behind 0 }}#89569c{{ end }}"
+                    ],
+                    "template": "<#7c7c7c>on</> {{ .UpstreamIcon }}{{ .HEAD }}{{ .BranchStatus }}{{ if .Working.Changed }} \uF044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uF046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \uF692 {{ .StashCount }}{{ end }} ",
+                    "properties": {
+                        "fetch_status": true,
+                        "fetch_stash_count": true,
+                        "fetch_upstream_icon": true,
+                        "branch_icon": "\uf126 "
+                    }
+                },
+                {
+                    "foreground": "#a87db8",
+                    "style": "plain",
+                    "template": "{{if .Version}}<#7c7c7c>is</> \uf487 {{.Version}} {{end}}",
+                    "type": "project"
+                },
+                {
+                    "foreground": "#8dd006",
+                    "properties": {
+                        "fetch_version": true
+                    },
+                    "style": "plain",
+                    "template": "<#7c7c7c>via</> \ue718 {{ .Full }} ",
+                    "type": "node"
+                },
+                {
+                    "foreground": "#a70334",
+                    "style": "plain",
+                    "template": "<#7c7c7c>and</> \ue71e {{.Full}} ",
+                    "type": "npm"
+                },
+                {
+                    "type": "python",
+                    "style": "powerline",
+                    "foreground": "#0383f5",
+                    "template": "<#7c7c7c>via</> \ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+                    "properties": {
+                        "display_mode": "files",
+                        "fetch_virtual_env": false
+                    },
+                    "invert_powerline": true
+                }
+            ],
+            "type": "prompt"
+        },
+        {
+            "alignment": "right",
+            "segments": [
+                {
+                    "foreground": "#cacaca",
+                    "invert_powerline": true,
+                    "style": "powerline",
+                    "template": "<#7c7c7c>\uf252 took</> {{ .FormattedMs }}",
+                    "type": "executiontime"
+                }
+            ],
+            "type": "prompt"
+        },
+        {
+            "alignment": "left",
+            "newline": true,
+            "segments": [
+                {
+                    "foreground": "#f3044b",
+                    "style": "plain",
+                    "template": "\u26a1",
+                    "type": "root"
+                },
+                {
+                    "type": "python",
+                    "style": "powerline",
+                    "foreground": "#1a83a6",
+                    "template": "({{ .Venv }}) "
+                },
+                {
+                    "foreground": "#cacaca",
+                    "foreground_templates": ["{{ if gt .Code 0 }}#f3044b{{ end }}"],
+                    "invert_powerline": true,
+                    "properties": {
+                        "always_enabled": true
+                    },
+                    "style": "powerline",
+                    "template": "{{ if gt .Code 0 }}\u274c{{ end }}",
+                    "type": "exit"
+                },
+                {
+                    "foreground": "#b6b649",
+                    "style": "plain",
+                    "template": "\u276f ",
+                    "type": "text"
+                }
+            ],
+            "type": "prompt"
+        }
+    ],
+    "version": 2
+}
